@@ -1,0 +1,69 @@
+<div class="hero-scene text-center">
+  <div class="hero-scene-content text-white">
+    <h1>Inscription</h1>
+  </div>
+</div>
+<div class="container">
+  <form>
+    <div class="mb-3">
+      <label for="NomInput" class="form-label">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="NomInput"
+        placeholder="Votre Nom"
+      />
+      <div class="invalid-feedback">Le Nom est requis</div>
+    </div>
+    <div class="mb-3">
+      <label for="PrenomInput" class="form-label">Prenom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="PrenomInput"
+        placeholder="Votre Prenom"
+      />
+      <div class="invalid-feedback">Le Prénom est requis</div>
+    </div>
+    <div class="mb-3">
+      <label for="EmailInput" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="EmailInput"
+        placeholder="test@mail.fr"
+      />
+      <div class="invalid-feedback">Le mail n'est pas au bon format</div>
+    </div>
+    <div class="mb-3">
+      <label for="NomInput" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" id="PasswordInput" />
+      <div class="invalid-feedback">
+        Le mot de passe n'est pas assez robuste : Au moins 8 , comprenant au
+        moins 1 lettre majuscule, chiffre, et 1 caractère spéciale
+      </div>
+      <div class="valid-feedback">Le mot de passe est rebuste</div>
+    </div>
+    <div class="mb-3">
+      <label for="validatePasswordInput" class="form-label"
+        >Confirmez votre mot de passe</label
+      >
+      <input type="password" class="form-control" id="validatePasswordInput" />
+      <div class="invalid-feedback">
+        La confirmation n'est pas identique au mot de passe !
+      </div>
+    </div>
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        id="btn-validation-inscription"
+      >
+        Inscription
+      </button>
+    </div>
+  </form>
+  <div class="text-center pt-3">
+    <a href="/signin">Vous avez déja un compte ? Connectez-vous ici !</a>
+  </div>
+</div>
