@@ -5,6 +5,7 @@ const apiUrl = "https://127.0.0.1:8000/api/";
 
 signoutBtn.addEventListener("click", signout);
 
+
 function getRole() {
   return getCookie(RoleCookieName);
 }
@@ -69,32 +70,60 @@ function showAndHideElementsForRoles() {
   allElementsToEdit.forEach((element) => {
     switch (element.dataset.show) {
       case "disconnected":
-        if(userConnected){
-          element.classList.add("d-none")
+        if (userConnected) {
+          element.classList.add("d-none");
         }
         break;
       case "connected":
-        if(!userConnected){
-          element.classList.add("d-none")
+        if (!userConnected) {
+          element.classList.add("d-none");
         }
         break;
       case "admin":
-        if(!userConnected || role != "admin"){
-          element.classList.add("d-none")
+        if (!userConnected || role != "admin") {
+          element.classList.add("d-none");
         }
         break;
       case "client":
-        if(!userConnected || role != "clien"){
-          element.classList.add("d-none")
+        if (!userConnected || role != "clien") {
+          element.classList.add("d-none");
         }
         break;
     }
   });
 }
 
-
-function sanitazeHtml(text){
-  const tempHtml = document.createElement('div');
+function sanitazeHtml(text) {
+  const tempHtml = document.createElement("div");
   tempHtml.textContent = text;
   return tempHtml.innerHTML;
+}
+
+function getInfoUser() {
+  const myHeaders = new Headers();
+  myHeaders.append("X-AUTH-TOKEN", getToken());
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch(apiUrl + "account/me", requestOptions)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log("Impossible de récupérer les informations utilisateur");
+      }
+    })
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      console.error(
+        "erreur lors de la récupération des données utilisateur",
+        error
+      );
+    });
 }
