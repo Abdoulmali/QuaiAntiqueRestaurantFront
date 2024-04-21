@@ -94,38 +94,25 @@ function validateRequired(input) {
 function InscrireUtilisateur() {
   let dataForm = new FormData(formInscription);
 
-  const myHeaders = new Headers();
+  let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  const raw = JSON.stringify({
+  let raw = JSON.stringify({
     firstName: dataForm.get("nom"),
     lastName: dataForm.get("prenom"),
     email: dataForm.get("email"),
     password: dataForm.get("mdp"),
   });
 
-  const requestOptions = {
+  let requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: raw,
     redirect: "follow",
   };
 
-  fetch(apiUrl + "registration", requestOptions)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("Erreur lors de l'inscription");
-      }
-    })
-    .then((result) => {
-      alert(
-        "Bravo " +
-          dataForm.get("prenom") +
-          ", vous êtes maintenant inscrit, vous pouvez vous connecter."
-      );
-      document.location.href = "/signin";
-    })
-    .catch((error) => console.error(error));
+  fetch("https://127.0.0.1:8000/api/registration", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 }
