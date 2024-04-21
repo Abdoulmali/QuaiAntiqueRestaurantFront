@@ -5,7 +5,7 @@ const signinForm = document.getElementById("signinForm");
 
 btnSignin.addEventListener("click", checkCredentials);
 
-function checkCredentials(){
+function checkCredentials() {
   let dataForm = new FormData(signinForm);
 
   const myHeaders = new Headers();
@@ -23,7 +23,7 @@ function checkCredentials(){
     redirect: "follow",
   };
 
-  fetch(apiUrl+"login", requestOptions)
+  fetch(apiUrl + "login", requestOptions)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -33,14 +33,12 @@ function checkCredentials(){
       }
     })
     .then((result) => {
-  const token = result.apiToken;
-  setToken(token);
-  //placer ce token en cookie
+      const token = result.apiToken;
+      setToken(token);
+      //placer ce token en cookie
 
-  setCookie(RoleCookieName, result.roles[0], 7);
-  window.location.replace("/");
+      setCookie(RoleCookieName, result.roles[0], 7);
+      window.location.replace("/");
     })
-    .catch((error) => console.error(error));
-
-
+    .catch((error) => console.log("error", error));
 }
